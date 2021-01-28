@@ -33,6 +33,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Address</th>
                 <th scope="col">Type</th>
+                <th scope="col">Rules</th>
                 <th scope="col">Edit</th>
             </tr>
         </thead>
@@ -53,6 +54,11 @@
                     </td>
                     <td scope="col">
                         <c:out value="${accident.type.name}"/>
+                    </td>
+                    <td scope="col">
+                        <c:forEach var="rule" items="${accident.rules}" >
+                            <c:out value='${rule.name}'/><br>
+                        </c:forEach>
                     </td>
                     <td scope="col">
                         <a href='<c:url value="/update?id=${accident.id}"/>'>
