@@ -62,11 +62,10 @@ public class Accident {
 
     @Override
     public String toString() {
-        return "Accident{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "Происшествие: " +
+                "№ - " + id + '\n' +
+                ", Название - " + name + '\n' +
+                ", Описание - " + text + '\n' +
+                ", Адрес - " + address + '\n';
     }
 }

@@ -26,4 +26,17 @@ public class AccidentMem {
     public List<Accident> getAccidents() {
         return new ArrayList<>(accidents.values());
     }
+
+    public void create(Accident accident) {
+        int id = accident.getId();
+        if (id == 0) {
+            id = ACCIDENT_ID.incrementAndGet();
+            accident.setId(id);
+        }
+        accidents.put(id, accident);
+    }
+
+    public Accident getAccidentById(int id) {
+        return accidents.get(id);
+    }
 }

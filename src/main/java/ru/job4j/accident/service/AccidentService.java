@@ -17,4 +17,12 @@ public class AccidentService {
     public List<Accident> getAccidents() {
         return accidents.getAccidents();
     }
+
+    public void create(Accident accident) {
+        accidents.create(accident);
+    }
+
+    public Accident getAccidentById(int id) {
+        return accidents.getAccidentById(id);
+    }
 }

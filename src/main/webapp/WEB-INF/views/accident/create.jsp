@@ -22,43 +22,26 @@
 </head>
 <body>
 <div class="container pt-3">
-    <div class="form-group">
-        <a class="btn btn-primary" href="<c:url value='/create'/>">Добавить инцидент</a>
-    </div>
-    <table class="table" style="width: 500px">
-        <thead>
+    <form action="<c:url value='/save'/>" method='POST'>
+        <table class="table">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Address</th>
-                <th scope="col">Edit</th>
+                <td>Название:</td>
+                <td><input type='text' name='name'></td>
             </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${accidents}" var="accident">
-                <tr>
-                    <td scope="col">
-                        <c:out value="${accident.id}"/>
-                    </td>
-                    <td scope="col">
-                        <c:out value="${accident.name}"/>
-                    </td>
-                    <td scope="col">
-                        <c:out value="${accident.text}"/>
-                    </td>
-                    <td scope="col">
-                        <c:out value="${accident.address}"/>
-                    </td>
-                    <td scope="col">
-                        <a href='<c:url value="/update?id=${accident.id}"/>'>
-                            <i class="fa fa-edit mr-3"></i>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            <tr>
+                <td>Описание:</td>
+                <td><input type='text' name='text'></td>
+            </tr>
+            <tr>
+                <td>Адрес:</td>
+                <td><input type='text' name='address'></td>
+            </tr>
+            <tr>
+                <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
+            </tr>
+        </table>
+        <input type="hidden" name="id" value="0">
+    </form>
 </div>
 </body>
 </html>
