@@ -25,6 +25,16 @@
     <form action="<c:url value='/save'/>" method='POST'>
         <table class="table">
             <tr>
+                <td>Тип:</td>
+                <td>
+                    <select name="type.id">
+                        <c:forEach var="type" items="${types}" >
+                            <option value="<c:out value='${type.id}'/>"><c:out value='${type.name}'/></option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>Название:</td>
                 <td><input type='text' name='name'></td>
             </tr>

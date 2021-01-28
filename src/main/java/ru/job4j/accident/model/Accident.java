@@ -7,6 +7,7 @@ public class Accident {
     private String name;
     private String text;
     private String address;
+    private AccidentType type;
 
     public Accident(int id, String name, String text, String address) {
         this.id = id;
@@ -47,6 +48,14 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,6 +75,7 @@ public class Accident {
                 "№ - " + id + '\n' +
                 ", Название - " + name + '\n' +
                 ", Описание - " + text + '\n' +
-                ", Адрес - " + address + '\n';
+                ", Адрес - " + address + '\n' +
+                ", " + type;
     }
 }
