@@ -28,20 +28,20 @@
         <table>
             <tr>
                 <td>Название:</td>
-                <td><input type='text' name='name'></td>
+                <td><input required type='text' name='name'></td>
             </tr>
             <tr>
                 <td>Описание:</td>
-                <td><input type='text' name='text'></td>
+                <td><input required type='text' name='text'></td>
             </tr>
             <tr>
                 <td>Адрес:</td>
-                <td><input type='text' name='address'></td>
+                <td><input required type='text' name='address'></td>
             </tr>
             <tr>
                 <td>Тип:</td>
                 <td>
-                    <select name="type.id">
+                    <select required name="type.id">
                         <c:forEach var="type" items="${types}" >
                             <option value="<c:out value='${type.id}'/>"><c:out value='${type.name}'/></option>
                         </c:forEach>
@@ -51,7 +51,7 @@
             <tr>
                 <td>Статьи:</td>
                 <td>
-                    <select name="rIds" multiple>
+                    <select required name="rIds" multiple>
                         <c:forEach var="rule" items="${rules}" >
                             <option value="<c:out value='${rule.id}'/>"><c:out value='${rule.name}'/></option>
                         </c:forEach>

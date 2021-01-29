@@ -61,7 +61,7 @@
                         </c:forEach>
                     </td>
                     <td scope="col">
-                        <a href='<c:url value="/update?id=${accident.id}"/>'>
+                        <a href='<c:url value="/edit?id=${accident.id}"/>'>
                             <i class="fa fa-edit mr-3"></i>
                         </a>
                     </td>

@@ -22,12 +22,12 @@
 </head>
 <body>
 <div class="container pt-3">
-    <form action="<c:url value='/save'/>" method='POST'>
+    <form action="<c:url value='/save?id=0'/>" method='POST'>
         <table class="table">
             <tr>
                 <td>Тип:</td>
                 <td>
-                    <select name="type.id">
+                    <select required name="type.id">
                         <c:forEach var="type" items="${types}" >
                             <option value="<c:out value='${type.id}'/>"><c:out value='${type.name}'/></option>
                         </c:forEach>
@@ -37,7 +37,7 @@
             <tr>
                 <td>Статьи:</td>
                 <td>
-                    <select name="rIds" multiple>
+                    <select required name="rIds" multiple>
                         <c:forEach var="rule" items="${rules}" >
                             <option value="<c:out value='${rule.id}'/>"><c:out value='${rule.name}'/></option>
                         </c:forEach>
@@ -45,21 +45,20 @@
             </tr>
             <tr>
                 <td>Название:</td>
-                <td><input type='text' name='name'></td>
+                <td><input required type='text' name='name'></td>
             </tr>
             <tr>
                 <td>Описание:</td>
-                <td><input type='text' name='text'></td>
+                <td><input required type='text' name='text'></td>
             </tr>
             <tr>
                 <td>Адрес:</td>
-                <td><input type='text' name='address'></td>
+                <td><input required type='text' name='address'></td>
             </tr>
             <tr>
                 <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
             </tr>
         </table>
-        <input type="hidden" name="id" value="0">
     </form>
 </div>
 </body>

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class AccidentMem {
+public class AccidentMem implements Store {
     private static final AtomicInteger ACCIDENT_ID = new AtomicInteger(0);
 
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
@@ -18,11 +18,11 @@ public class AccidentMem {
     private final Map<Integer, Rule> rules = new ConcurrentHashMap<>();
 
     {
-        accidents.put(ACCIDENT_ID.incrementAndGet(), new Accident(1, "one", "description 1", "address 1"));
-        accidents.put(ACCIDENT_ID.incrementAndGet(), new Accident(2, "two", "description 2", "address 2"));
-        accidents.put(ACCIDENT_ID.incrementAndGet(), new Accident(3, "three", "description 3", "address 3"));
-        accidents.put(ACCIDENT_ID.incrementAndGet(), new Accident(4, "four", "description 4", "address 4"));
-        accidents.put(ACCIDENT_ID.incrementAndGet(), new Accident(5, "five", "description 5", "address 5"));
+        accidents.put(ACCIDENT_ID.incrementAndGet(), Accident.of(1, "one", "description 1", "address 1"));
+        accidents.put(ACCIDENT_ID.incrementAndGet(), Accident.of(2, "two", "description 2", "address 2"));
+        accidents.put(ACCIDENT_ID.incrementAndGet(), Accident.of(3, "three", "description 3", "address 3"));
+        accidents.put(ACCIDENT_ID.incrementAndGet(), Accident.of(4, "four", "description 4", "address 4"));
+        accidents.put(ACCIDENT_ID.incrementAndGet(), Accident.of(5, "five", "description 5", "address 5"));
         types.put(1, AccidentType.of(1, "Две машины"));
         types.put(2, AccidentType.of(2, "Машина и человек"));
         types.put(3, AccidentType.of(3, "Машина и велосипед"));
@@ -33,19 +33,23 @@ public class AccidentMem {
         rules.put(5, Rule.of(5, "Статья 5"));
     }
 
+    @Override
     public List<Accident> getAccidents() {
         return new ArrayList<>(accidents.values());
     }
 
+    @Override
     public List<AccidentType> getTypes() {
         return new ArrayList<>(types.values());
     }
 
+    @Override
     public List<Rule> getRules() {
         return new ArrayList<>(rules.values());
     }
 
-    public void create(Accident accident) {
+    @Override
+    public void save(Accident accident) {
         int id = accident.getId();
         if (id == 0) {
             id = ACCIDENT_ID.incrementAndGet();
@@ -54,15 +58,13 @@ public class AccidentMem {
         accidents.put(id, accident);
     }
 
+    @Override
     public Accident getAccidentById(int id) {
         return accidents.get(id);
     }
 
-    public AccidentType getTypeById(int id) {
-        return types.get(id);
-    }
-
-    public Set<Rule> getRulesById(String[] ids) {
+    @Override
+    public Set<Rule> getRulesByIds(String[] ids) {
         Set<Rule> result = new HashSet<>();
         for (String id : ids) {
             result.add(rules.get(Integer.parseInt(id)));

@@ -45,6 +45,6 @@ public class AccidentType {
 
     @Override
     public String toString() {
-        return "Тип: " + name + '\n';
+        return "Тип: " + name;
     }
 }

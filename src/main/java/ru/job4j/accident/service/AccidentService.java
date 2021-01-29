@@ -4,43 +4,42 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
+import ru.job4j.accident.repository.Store;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
-public class AccidentService {
-    private AccidentMem accidents;
+public class AccidentService implements ru.job4j.accident.service.Service {
+    private Store accidents;
 
-    public AccidentService(AccidentMem accidents) {
+    public AccidentService(AccidentJdbcTemplate accidents) {
         this.accidents = accidents;
     }
 
+    @Override
     public List<Accident> getAccidents() {
         return accidents.getAccidents();
     }
 
+    @Override
     public List<AccidentType> getTypes() {
         return accidents.getTypes();
     }
 
+    @Override
     public List<Rule> getRules() {
         return accidents.getRules();
     }
 
-    public void create(Accident accident) {
-        AccidentType type = accidents.getTypeById(accident.getType().getId());
-        accident.setType(type);
-        accidents.create(accident);
+    @Override
+    public void save(Accident accident, String[] ids) {
+        accident.setRules(accidents.getRulesByIds(ids));
+        accidents.save(accident);
     }
 
+    @Override
     public Accident getAccidentById(int id) {
         return accidents.getAccidentById(id);
-    }
-
-    public Set<Rule> getRulesById(String[] ids) {
-        return accidents.getRulesById(ids);
     }
 }
