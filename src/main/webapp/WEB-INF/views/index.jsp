@@ -22,6 +22,9 @@
 </head>
 <body>
 <div class="container pt-3">
+    <div style="float: right">
+        <a href="http://localhost:8080/accident/login?logout=true">Login as : <c:out value="${user.username}"/></a>
+    </div>
     <div class="form-group">
         <a class="btn btn-primary" href="<c:url value='/create'/>">Добавить инцидент</a>
     </div>
